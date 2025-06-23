@@ -193,7 +193,7 @@ main p {
   border: 1px solid var(--line-clr);
   border-radius: 1em;
   margin-bottom: 20px;
-  padding: min(3em, 15%);
+  padding: min(0.5em, 15%);
 
   h2,
   p {
@@ -214,4 +214,5 @@ main p {
 .image {
   max-width: 100%;
   height: auto;
+  border-radius: 1em;
 }
