@@ -154,35 +154,32 @@
           <div id="loader">Videolar yükleniyor...</div>
 
           <div id="video-container">
-            <video controls preload="auto">
-              <source src="videos/video1.mp4" type="video/mp4" />
-              Tarayıcınız video etiketini desteklemiyor.
-            </video>
-
-            <video controls preload="auto">
-              <source src="videos/video2.mp4" type="video/mp4" />
-              Tarayıcınız video etiketini desteklemiyor.
-            </video>
+            <video controls></video>
+            <video controls></video>
           </div>
         </div>
       </div>
     </main>
 
     <script>
-      const videos = document.querySelectorAll("video");
       const loader = document.getElementById("loader");
-      const videoContainer = document.getElementById("video-container");
+      const container = document.getElementById("video-container");
+      const videoElements = container.querySelectorAll("video");
 
-      let loadedCount = 0;
+      const sources = ["./videos/video1.mp4", "./videos/video2.mp4"];
 
-      videos.forEach((video) => {
-        video.addEventListener("canplaythrough", () => {
-          loadedCount++;
-          if (loadedCount === videos.length) {
-            loader.style.display = "none";
-            videoContainer.style.display = "flex";
-          }
-        });
+      Promise.all(
+        sources.map((src, i) =>
+          fetch(src)
+            .then((res) => res.blob())
+            .then((blob) => {
+              const url = URL.createObjectURL(blob);
+              videoElements[i].src = url;
+            })
+        )
+      ).then(() => {
+        loader.style.display = "none";
+        container.style.display = "flex";
       });
     </script>
   </body>
