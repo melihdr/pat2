@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="/images/deu.jpg" />
     <script type="text/javascript" src="app.js" defer></script>
+
+    <style>
+      #loader {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      #video-container {
+        display: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+
+      video {
+        width: 90vw;
+        max-width: 720px;
+      }
+    </style>
   </head>
   <body>
     <nav id="sidebar" class="close">
@@ -68,6 +88,26 @@
           </a>
         </li>
         <li>
+          <a href="epidemiyoloji.html">
+            <img
+              src="./images/psi.png"
+              alt="psy_icon"
+              style="width: 30px; height: 30px"
+            />
+            <span>Epidemiyoloji </span>
+          </a>
+        </li>
+        <li>
+          <a href="etiyoloji.html">
+            <img
+              src="./images/psi.png"
+              alt="psy_icon"
+              style="width: 30px; height: 30px"
+            />
+            <span>Etiyoloji</span>
+          </a>
+        </li>
+        <li>
           <a href="psiko_etki.html">
             <img
               src="./images/psi.png"
@@ -102,41 +142,48 @@
     <main>
       <div class="image-box-div">
         <div class="image-box container">
-          <div
-            style="
-              position: relative;
-              width: 100%;
-              height: 0;
-              padding-top: 56.25%;
-              padding-bottom: 0;
-              box-shadow: 0 2px 8px 0 rgba(63, 69, 81, 0.16);
-              margin-top: 1.6em;
-              margin-bottom: 0.9em;
-              overflow: hidden;
-              border-radius: 8px;
-              will-change: transform;
-            "
-          >
-            <iframe
-              loading="lazy"
-              style="
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                border: none;
-                padding: 0;
-                margin: 0;
-              "
-              src="https://www.canva.com/design/DAGqpJULJb8/yzMwl1r7TuZ8eyjssjxfRg/view?embed"
-              allowfullscreen="allowfullscreen"
-              allow="fullscreen"
-            >
-            </iframe>
+          <img class="image" src="./images/film/film1.png" alt="kitap1" />
+          <img class="image" src="./images/film/film2.png" alt="kitap2" />
+          <img class="image" src="./images/film/film3.png" alt="kitap3" />
+          <img class="image" src="./images/film/film4.png" alt="kitap4" />
+          <img class="image" src="./images/film/film5.png" alt="kitap5" />
+          <img class="image" src="./images/film/film6.png" alt="kitap6" />
+          <img class="image" src="./images/film/film7.png" alt="kitap6" />
+          <img class="image" src="./images/film/film8.png" alt="kitap6" />
+
+          <div id="loader">Videolar yükleniyor...</div>
+
+          <div id="video-container">
+            <video controls>
+              <source src="videos/video1.mp4" type="video/mp4" />
+              Tarayıcınız video etiketini desteklemiyor.
+            </video>
+
+            <video controls>
+              <source src="videos/video2.mp4" type="video/mp4" />
+              Tarayıcınız video etiketini desteklemiyor.
+            </video>
           </div>
         </div>
       </div>
     </main>
+
+    <script>
+      const videos = document.querySelectorAll("video");
+      const loader = document.getElementById("loader");
+      const videoContainer = document.getElementById("video-container");
+
+      let loadedCount = 0;
+
+      videos.forEach((video) => {
+        video.addEventListener("canplaythrough", () => {
+          loadedCount++;
+          if (loadedCount === videos.length) {
+            loader.style.display = "none";
+            videoContainer.style.display = "flex";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
