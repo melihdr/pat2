@@ -29,6 +29,7 @@ body {
   transition: 0.3s;
   width: 100%;
   text-align: left;
+  color: black;
 }
 .option:hover {
   background-color: #ccc;
